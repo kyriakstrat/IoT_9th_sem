@@ -1,0 +1,43 @@
+.button-1 {
+  width: 160px;
+  font-weight: 500;
+  line-height: 18px;
+  display: inline-block;
+  position: relative;
+}
+
+.elementbuttonsmallfilled2 {
+  background-color: var(--color-steelblue-200);
+  justify-content: center;
+  height: 26px;
+}
+
+.elementbuttonsmallfilled2, .elementbuttonsmallfilled3, .profile-settings {
+  border-radius: var(--br-11xs);
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+  display: flex;
+}
+
+.elementbuttonsmallfilled3 {
+  background-color: var(--color-steelblue-200);
+  cursor: pointer;
+  justify-content: center;
+  height: 26px;
+}
+
+.profile-settings {
+  text-align: center;
+  font-size: var(--medium-12-size);
+  color: var(--colour-secondary-white-100-general);
+  font-family: var(--medium-12);
+  background-color: #7abde5cc;
+  justify-content: flex-start;
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  overflow: auto;
+}
+
+/*# sourceMappingURL=profile-settings.d826b896.css.map */

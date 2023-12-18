@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+
+    <link rel="stylesheet" href="/cameras.689f5f05.css">
+    <link rel="stylesheet" href="/cameras.bb110a98.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap">
+  </head>
+  <body>
+    <div class="cameras">
+      <div class="footer1">
+        <div class="frame4">
+          <div class="home1">Home</div>
+          <div class="about1">About</div>
+          <div class="contact2">Contact</div>
+        </div>
+        <img class="iconsocialinstagram1" alt="" src="/iconsocialinstagram.5c8293ff.svg">
+
+        <img class="iconsocialinstagram-copy1" alt="" src="/iconsocialinstagram-copy.d0d78777.svg">
+
+        <img class="iconsocialinstagram-copy-21" alt="" src="/iconsocialinstagram-copy-2.c83918aa.svg">
+
+        <img class="iconsocialinstagram-copy-31" alt="" src="/iconsocialinstagram-copy-3.ac9688ea.svg">
+
+        <img class="iconsocialinstagram-copy-41" alt="" src="/iconsocialinstagram-copy-4.ffd34799.svg">
+
+        <div class="rectangle1"></div>
+        <div class="parent">
+          <div class="div1">©2023 InteliSecureHome</div>
+          <img class="cropped-light-21" alt="" src="/cropped-light-2@2x.16e4f2ce.png">
+        </div>
+      </div>
+      <div class="nav1">
+        <div class="frame5">
+          <div class="devices" id="devicesText">Devices</div>
+          <div class="cameras1">Cameras</div>
+          <div class="events">Routines</div>
+          <div class="events1">Events</div>
+        </div>
+        <div class="profile" id="profileContainer">
+          <div class="elementbuttonsmallfilled4">
+            <div class="button-0">Profile</div>
+          </div>
+        </div>
+        <img class="cropped-light-11" alt="" src="/cropped-light-2@2x.16e4f2ce.png">
+      </div>
+      <div class="frame-parent">
+        <div class="balcony-camera-parent">
+          <b class="balcony-camera">Balcony Camera</b>
+          <div class="front-yard">Front yard</div>
+        </div>
+        <img class="image-1-icon" alt="" src="/image-1@2x.678ae692.png">
+      </div>
+      <div class="frame-group">
+        <div class="balcony-camera-parent">
+          <b class="balcony-camera">Balcony Camera</b>
+          <div class="front-yard">Front yard</div>
+        </div>
+        <img class="image-1-icon" alt="" src="/image-1@2x.678ae692.png">
+      </div>
+      <div class="frame-container">
+        <div class="balcony-camera-parent">
+          <b class="balcony-camera">Balcony Camera</b>
+          <div class="front-yard">Front yard</div>
+        </div>
+        <img class="image-1-icon" alt="" src="/image-1@2x.678ae692.png">
+      </div>
+      <div class="frame-div">
+        <div class="balcony-camera-parent">
+          <b class="balcony-camera">Balcony Camera</b>
+          <div class="front-yard">Front yard</div>
+        </div>
+        <img class="image-1-icon" alt="" src="/image-1@2x.678ae692.png">
+      </div>
+      <div class="frame-parent1">
+        <div class="balcony-camera-parent">
+          <b class="balcony-camera">Balcony Camera</b>
+          <div class="front-yard">Front yard</div>
+        </div>
+        <img class="image-1-icon" alt="" src="/image-1@2x.678ae692.png">
+      </div>
+      <div class="frame-parent2">
+        <div class="balcony-camera-parent">
+          <b class="balcony-camera">Balcony Camera</b>
+          <div class="front-yard">Front yard</div>
+        </div>
+        <img class="image-1-icon" alt="" src="/image-1@2x.678ae692.png">
+      </div>
+      <div class="cameras2">Cameras</div>
+    </div>
+
+    <div id="profileSettingsContainer" class="popup-overlay" style="display: none">
+      <div class="profile-settings">
+        <div class="elementbuttonsmallfilled2">
+          <div class="button-1">Personal Info</div>
+        </div>
+        <div class="elementbuttonsmallfilled3" id="popupelementButtonSmallFilledContainer1">
+          <div class="button-1">Log out</div>
+        </div>
+      </div>
+    </div>
+
+    <script>var popupelementButtonSmallFilledContainer1 = document.getElementById("popupelementButtonSmallFilledContainer1");
+if (popupelementButtonSmallFilledContainer1) popupelementButtonSmallFilledContainer1.addEventListener("click", function(e) {
+    window.location.href = "./homepage.html";
+});
+var devicesText = document.getElementById("devicesText");
+if (devicesText) devicesText.addEventListener("click", function(e) {
+    window.location.href = "./devices.html";
+});
+var profileContainer = document.getElementById("profileContainer");
+if (profileContainer) profileContainer.addEventListener("click", function() {
+    var popup = document.getElementById("profileSettingsContainer");
+    if (!popup) return;
+    var popupStyle = popup.style;
+    if (popupStyle) {
+        popupStyle.display = "flex";
+        popupStyle.zIndex = 100;
+        popupStyle.backgroundColor = "rgba(113, 113, 113, 0.3)";
+        popupStyle.alignItems = "center";
+        popupStyle.justifyContent = "center";
+    }
+    popup.setAttribute("closable", "");
+    var onClick = popup.onClick || function(e) {
+        if (e.target === popup && popup.hasAttribute("closable")) popupStyle.display = "none";
+    };
+    popup.addEventListener("click", onClick);
+});
+
+</script>
+  <script src="/cameras.9430e0bd.js"></script></body>
+</html>

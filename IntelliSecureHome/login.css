@@ -1,0 +1,253 @@
+.about3,
+.contact4,
+.home3 {
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 0;
+  line-height: 24px;
+}
+.about3,
+.contact4 {
+  left: 40%;
+}
+.contact4 {
+  left: 80%;
+}
+.frame8 {
+  position: absolute;
+  top: 105px;
+  left: 0;
+  width: 245px;
+  height: 24px;
+}
+.iconsocialinstagram3 {
+  position: absolute;
+  height: 12.4%;
+  width: 1.44%;
+  top: 84.5%;
+  right: 0;
+  bottom: 3.1%;
+  left: 98.56%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.iconsocialinstagram-copy-23,
+.iconsocialinstagram-copy-33,
+.iconsocialinstagram-copy-43,
+.iconsocialinstagram-copy3 {
+  position: absolute;
+  height: 12.4%;
+  width: 1.44%;
+  top: 84.5%;
+  right: 4.14%;
+  bottom: 3.1%;
+  left: 94.41%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.iconsocialinstagram-copy-23,
+.iconsocialinstagram-copy-33,
+.iconsocialinstagram-copy-43 {
+  right: 8.29%;
+  left: 90.27%;
+}
+.iconsocialinstagram-copy-33,
+.iconsocialinstagram-copy-43 {
+  right: 12.43%;
+  left: 86.13%;
+}
+.iconsocialinstagram-copy-43 {
+  right: 16.58%;
+  left: 81.98%;
+}
+.rectangle3 {
+  position: absolute;
+  height: 0.78%;
+  width: 100%;
+  top: 65.12%;
+  right: 0;
+  bottom: 34.11%;
+  left: 0;
+  background-color: var(--color-lightgray);
+}
+.div3 {
+  position: absolute;
+  top: calc(50% - 11.5px);
+  left: 37.4%;
+  line-height: 24px;
+  font-weight: 500;
+}
+.container,
+.cropped-light-23 {
+  position: absolute;
+  top: 0;
+  height: 41px;
+}
+.cropped-light-23 {
+  left: calc(50% - 127px);
+  width: 71px;
+  object-fit: cover;
+}
+.container {
+  left: 428px;
+  width: 254px;
+  color: var(--colour-main-grey-400);
+}
+.footer3 {
+  position: absolute;
+  top: 975px;
+  left: 165px;
+  width: 1110px;
+  height: 129px;
+}
+.go-back {
+  margin-block-start: 0;
+  margin-block-end: 4px;
+}
+.button-label4 {
+  position: absolute;
+  width: 100%;
+  top: calc(50% - 9px);
+  left: 0;
+  line-height: 18px;
+  font-weight: 500;
+  display: inline-block;
+}
+.elementbuttonsmallfilled24 {
+  position: absolute;
+  height: calc(100% - 34px);
+  width: calc(100% - 1280px);
+  top: 18px;
+  right: 165px;
+  bottom: 16px;
+  left: 1115px;
+  border-radius: var(--br-11xs);
+  background-color: var(--color-steelblue-100);
+  cursor: pointer;
+}
+.cropped-light-13 {
+  position: absolute;
+  top: 11px;
+  left: calc(50% - 35px);
+  width: 71px;
+  height: 41px;
+  object-fit: cover;
+}
+.contact5 {
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 65.73%;
+  line-height: 24px;
+}
+.frame9 {
+  position: absolute;
+  top: 18px;
+  left: 165px;
+  width: 143px;
+  height: 24px;
+  text-align: left;
+  font-size: var(--regular-14-size);
+  color: var(--color-steelblue-100);
+}
+.frame-child,
+.nav3 {
+  position: absolute;
+  left: 0;
+}
+.nav3 {
+  height: 5.17%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 94.83%;
+  text-align: center;
+  font-size: var(--medium-12-size);
+  color: var(--colour-secondary-white-100-general);
+}
+.frame-child {
+  top: 31.2px;
+  border-radius: 28.44px;
+  border: 0.7px solid var(--color-black);
+  box-sizing: border-box;
+  width: 426.3px;
+  height: 90.8px;
+}
+.email {
+  position: absolute;
+  top: -4px;
+  left: 3.8px;
+  display: flex;
+  align-items: center;
+  width: 191.9px;
+  height: 31.2px;
+}
+.rectangle-parent {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  width: 426.3px;
+  height: 121.9px;
+}
+.forgot-password {
+  position: absolute;
+  top: 503.4px;
+  left: calc(50% - 96.65px);
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 194.1px;
+  height: 31.3px;
+}
+.rectangle-group,
+.sign-up {
+  position: absolute;
+  top: 195.6px;
+  left: 1px;
+  width: 426.3px;
+  height: 121.9px;
+}
+.sign-up {
+  top: 26.4px;
+  left: 9.7px;
+  line-height: 17.07px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 405.4px;
+  height: 23.9px;
+}
+.learn-more {
+  position: absolute;
+  top: 391.1px;
+  left: 0;
+  border-radius: 9.24px;
+  background-color: var(--color-steelblue-100);
+  width: 427.2px;
+  height: 76.7px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--colour-secondary-white-100-general);
+}
+.frame-parent3 {
+  position: absolute;
+  top: 313px;
+  left: 506px;
+  width: 427.3px;
+  height: 534.7px;
+  font-size: 21.33px;
+  color: var(--color-black);
+}
+.login {
+  position: relative;
+  background-color: var(--colour-secondary-white-100-general);
+  width: 100%;
+  height: 1161px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--regular-14-size);
+  color: var(--color-steelblue-100);
+  font-family: var(--medium-12);
+}

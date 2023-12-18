@@ -1,0 +1,39 @@
+.button-1 {
+  position: relative;
+  line-height: 18px;
+  font-weight: 500;
+  display: inline-block;
+  width: 160px;
+}
+.elementbuttonsmallfilled2 {
+  background-color: var(--color-steelblue-200);
+  height: 26px;
+  justify-content: center;
+}
+.elementbuttonsmallfilled2,
+.elementbuttonsmallfilled3,
+.profile-settings {
+  border-radius: var(--br-11xs);
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.elementbuttonsmallfilled3 {
+  background-color: var(--color-steelblue-200);
+  height: 26px;
+  justify-content: center;
+  cursor: pointer;
+}
+.profile-settings {
+  position: relative;
+  background-color: rgba(122, 189, 229, 0.8);
+  justify-content: flex-start;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  text-align: center;
+  font-size: var(--medium-12-size);
+  color: var(--colour-secondary-white-100-general);
+  font-family: var(--medium-12);
+}

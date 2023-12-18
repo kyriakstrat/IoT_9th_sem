@@ -1,0 +1,313 @@
+.about1, .contact2, .home1 {
+  line-height: 24px;
+  position: absolute;
+  top: calc(50% - 12px);
+  left: 0;
+}
+
+.about1, .contact2 {
+  left: 40%;
+}
+
+.contact2 {
+  left: 80%;
+}
+
+.frame4 {
+  width: 245px;
+  height: 24px;
+  position: absolute;
+  top: 105px;
+  left: 0;
+}
+
+.iconsocialinstagram1 {
+  width: 1.44%;
+  max-width: 100%;
+  height: 12.4%;
+  max-height: 100%;
+  position: absolute;
+  inset: 84.5% 0 3.1% 98.56%;
+  overflow: hidden;
+}
+
+.iconsocialinstagram-copy-21, .iconsocialinstagram-copy-31, .iconsocialinstagram-copy-41, .iconsocialinstagram-copy1 {
+  width: 1.44%;
+  max-width: 100%;
+  height: 12.4%;
+  max-height: 100%;
+  position: absolute;
+  inset: 84.5% 4.14% 3.1% 94.41%;
+  overflow: hidden;
+}
+
+.iconsocialinstagram-copy-21, .iconsocialinstagram-copy-31, .iconsocialinstagram-copy-41 {
+  left: 90.27%;
+  right: 8.29%;
+}
+
+.iconsocialinstagram-copy-31, .iconsocialinstagram-copy-41 {
+  left: 86.13%;
+  right: 12.43%;
+}
+
+.iconsocialinstagram-copy-41 {
+  left: 81.98%;
+  right: 16.58%;
+}
+
+.rectangle1 {
+  background-color: var(--color-lightgray);
+  width: 100%;
+  height: .78%;
+  position: absolute;
+  inset: 65.12% 0 34.11%;
+}
+
+.div1 {
+  font-weight: 500;
+  line-height: 24px;
+  position: absolute;
+  top: calc(50% - 11.5px);
+  left: 37.4%;
+}
+
+.cropped-light-21, .parent {
+  height: 41px;
+  position: absolute;
+  top: 0;
+}
+
+.cropped-light-21 {
+  object-fit: cover;
+  width: 71px;
+  left: calc(50% - 127px);
+}
+
+.parent {
+  color: var(--colour-main-grey-400);
+  width: 254px;
+  left: 428px;
+}
+
+.footer1 {
+  font-size: var(--regular-14-size);
+  width: 1110px;
+  height: 129px;
+  position: absolute;
+  top: 975px;
+  left: 165px;
+}
+
+.cameras1, .devices, .events, .events1 {
+  line-height: 24px;
+  position: absolute;
+  top: calc(50% - 12px);
+}
+
+.devices {
+  cursor: pointer;
+  left: 0;
+}
+
+.cameras1, .events, .events1 {
+  left: 27.89%;
+}
+
+.events, .events1 {
+  left: 57.86%;
+}
+
+.events1 {
+  left: 87.54%;
+}
+
+.frame5 {
+  width: 337px;
+  height: 24px;
+  position: absolute;
+  top: 18px;
+  left: 165px;
+}
+
+.button-0 {
+  width: 100%;
+  font-weight: 500;
+  line-height: 18px;
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 9px);
+  left: 0;
+}
+
+.elementbuttonsmallfilled4 {
+  border-radius: var(--br-11xs);
+  background-color: var(--color-steelblue-100);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.profile {
+  text-align: center;
+  font-size: var(--medium-12-size);
+  color: var(--colour-secondary-white-100-general);
+  width: 11.11%;
+  height: 43.33%;
+  position: absolute;
+  inset: 30% 11.46% 26.67% 77.43%;
+}
+
+.cropped-light-11 {
+  object-fit: cover;
+  width: 71px;
+  height: 41px;
+  position: absolute;
+  top: 11px;
+  left: calc(50% - 35px);
+}
+
+.nav1 {
+  font-size: var(--regular-14-size);
+  width: 100%;
+  height: 5.17%;
+  position: absolute;
+  inset: 0 0 94.83%;
+}
+
+.balcony-camera, .front-yard {
+  width: 184.5px;
+  height: 23.1px;
+  line-height: 24px;
+  display: inline-block;
+  position: absolute;
+  top: 19.2px;
+  left: 28.4px;
+}
+
+.front-yard {
+  font-size: var(--regular-14-size);
+  width: 89.4px;
+  top: 37.5px;
+}
+
+.balcony-camera-parent {
+  border-radius: var(--br-sm);
+  background-color: var(--color-lightskyblue-100);
+  border: 2px solid var(--color-steelblue-100);
+  box-sizing: border-box;
+  width: 403px;
+  height: 273px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.image-1-icon {
+  object-fit: cover;
+  width: 310px;
+  height: 174px;
+  position: absolute;
+  top: 69px;
+  left: 47px;
+}
+
+.frame-group, .frame-parent {
+  width: 403px;
+  height: 273px;
+  position: absolute;
+  top: 226px;
+  left: 79px;
+}
+
+.frame-group {
+  top: 536px;
+}
+
+.frame-container, .frame-div, .frame-parent1, .frame-parent2 {
+  width: 403px;
+  height: 273px;
+  position: absolute;
+  top: 226px;
+  left: 519px;
+}
+
+.frame-div, .frame-parent1, .frame-parent2 {
+  top: 536px;
+}
+
+.frame-parent1, .frame-parent2 {
+  top: 226px;
+  left: 959px;
+}
+
+.frame-parent2 {
+  top: 536px;
+}
+
+.cameras2 {
+  font-size: var(--font-size-17xl);
+  text-align: center;
+  font-weight: 900;
+  line-height: 18px;
+  position: absolute;
+  top: 168px;
+  left: 79px;
+}
+
+.cameras {
+  background-color: var(--colour-secondary-white-100-general);
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-steelblue-100);
+  font-family: var(--medium-12);
+  width: 100%;
+  height: 1161px;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-1 {
+  width: 160px;
+  font-weight: 500;
+  line-height: 18px;
+  display: inline-block;
+  position: relative;
+}
+
+.elementbuttonsmallfilled2 {
+  background-color: var(--color-steelblue-200);
+  justify-content: center;
+  height: 26px;
+}
+
+.elementbuttonsmallfilled2, .elementbuttonsmallfilled3, .profile-settings {
+  border-radius: var(--br-11xs);
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+  display: flex;
+}
+
+.elementbuttonsmallfilled3 {
+  background-color: var(--color-steelblue-200);
+  cursor: pointer;
+  justify-content: center;
+  height: 26px;
+}
+
+.profile-settings {
+  text-align: center;
+  font-size: var(--medium-12-size);
+  color: var(--colour-secondary-white-100-general);
+  font-family: var(--medium-12);
+  background-color: #7abde5cc;
+  justify-content: flex-start;
+  max-width: 90%;
+  max-height: 90%;
+  position: relative;
+  overflow: auto;
+}
+
+/*# sourceMappingURL=cameras.bb110a98.css.map */
