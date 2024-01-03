@@ -1,0 +1,11 @@
+<!-- views/devices.ejs -->
+<h1>Devices</h1>
+
+<div class="device-grid">
+    <% devices.forEach(device => { %>
+        <div class="device-square">
+            <a href="/device/<%= device.name %>"><%= device.name %></a>
+            <p>Value: <%= device.value %></p>
+        </div>
+    <% }); %>
+</div>

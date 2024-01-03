@@ -1,0 +1,30 @@
+<!-- views/navbar.ejs -->
+<nav class="navbar">
+    <div class="nav-main">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="/">Home</a></li>
+            <li class="nav-item"><a href="/devices">Devices</a></li>
+            <li class="nav-item"><a href="/logs">Logs</a></li>
+            <li class="nav-item"><a href="/routines">Routines</a></li>
+        </ul>
+    </div>
+    <div class="nav-user">
+        <div class="user-greeting" id="userGreeting">Hello, <%= username %></div>
+        <div class="sidebar" id="sidebar">
+            <ul class="sidebar-list">
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // JavaScript to toggle sidebar visibility
+    const userGreeting = document.getElementById('userGreeting');
+    const sidebar = document.getElementById('sidebar');
+
+    userGreeting.addEventListener('click', () => {
+        sidebar.classList.toggle('show-sidebar');
+    });
+</script>

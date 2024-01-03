@@ -1,0 +1,18 @@
+<!-- views/devices.hbs or views/devices.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Devices</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Include the navbar -->
+    <%- include('navbar', { username}) %>   
+
+    <%- include('device', {devices}) %>   
+
+    
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+/* public/styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-main {
+    display: flex;
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+}
+
+.user-greeting {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sidebar {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #111;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-list a {
+    text-decoration: none;
+    color: white;
+}
+
+.show-sidebar {
+    display: block;
+}
