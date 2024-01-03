@@ -1,8 +1,10 @@
 import paho.mqtt.client as mqtt
+from orion_context_broker import *
 
 # MQTT broker details
 mqtt_broker = "150.140.186.118"
-mqtt_topic = "kyriakstrat/id1"
+mqtt_topic = "kyriakstrat/sensor_id/sensor_name"
+
 
 # Callback when the client connects to the broker
 def on_connect(client, userdata, flags, rc):
@@ -12,7 +14,11 @@ def on_connect(client, userdata, flags, rc):
 
 # Callback when a message is received from the broker
 def on_message(client, userdata, msg):
+    info = str(msg.topic).split('/')[1:]
+    info.append((float(msg.payload)))
     print(f"Received message on topic {msg.topic}: {msg.payload.decode()}")
+    print(info)
+    
 
 # Create an MQTT client
 client = mqtt.Client()
