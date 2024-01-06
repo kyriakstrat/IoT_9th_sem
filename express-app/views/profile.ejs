@@ -1,0 +1,43 @@
+<!-- views/profile.ejs -->
+
+<html>
+  <head>
+    <!-- Include your head content here -->
+    <link rel="stylesheet" href="/public/profile.css" />
+    <style>
+      /* Style to initially hide the form */
+      #editForm {
+        display: none;
+        margin-top: 20px; /* Add some spacing between profile and form */
+      }
+    </style>
+    <script>
+      // JavaScript to toggle the visibility of the form
+      function toggleEditForm() {
+        var editForm = document.getElementById('editForm');
+        editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
+      }
+    </script>
+  </head>
+  <body>
+    <%- include('navbar', {username}) %>   
+
+
+    <h2>Welcome, <%= userData.name %></h2>
+    <p>Email: <%= userData.email %></p>
+
+    <!-- Button to toggle the visibility of the form -->
+    <button onclick="toggleEditForm()">Edit Profile</button>
+
+    <!-- Form initially hidden, revealed when the button is clicked -->
+    <form id="editForm" action="/profile/edit" method="post">
+      <label for="newName">New Name:</label>
+      <input type="text" id="newName" name="newName" value="<%= userData.name %>" required />
+
+      <label for="newPassword">New Password:</label>
+      <input type="password" id="newPassword" name="newPassword" required />
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </body>
+</html>

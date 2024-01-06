@@ -1,0 +1,60 @@
+<!-- views/login.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+        <label for="loginEmail">Email:</label>
+        <input type="text" id="loginEmail" name="loginEmail" required>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="register-link">
+        <a href="#" onclick="openRegisterPopup()">Register</a>
+    </div>
+</div>
+
+<div id="registerPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closeRegisterPopup()">&times;</span>
+        <h2>Register</h2>
+        <form action="/login/register" method="post">
+            <label for="registerName">Name:</label>
+            <input type="text" id="registerName" name="registerName" required>
+
+            <label for="registerEmail">Email:</label>
+            <input type="text" id="registerEmail" name="registerEmail" required>
+
+            <label for="registerPassword">Password:</label>
+            <input type="password" id="registerPassword" name="registerPassword" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openRegisterPopup() {
+        document.getElementById('registerPopup').style.display = 'block';
+    }
+
+    function closeRegisterPopup() {
+        document.getElementById('registerPopup').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
