@@ -1,0 +1,18 @@
+<!-- views/add_device.ejs -->
+<div id="add-device-form" style="display: none;">
+    <form action="/add_device" method="POST">
+        <label for="deviceUrl">Device URL:</label>
+        <input type="text" id="deviceUrl" name="deviceUrl" required>
+        <br>
+        <label for="deviceName">Device Name:</label>
+        <input type="text" id="deviceName" name="deviceName" required>
+        <br>
+        <label for="deviceType">Device Type:</label>
+        <select id="deviceType" name="deviceType" required>
+            <option value="sensor">Sensor</option>
+            <option value="actuator">Actuator</option>
+        </select>
+        <br>
+        <button type="submit">Add</button>
+    </form>
+</div>

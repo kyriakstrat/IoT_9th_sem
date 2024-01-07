@@ -4,7 +4,7 @@
 <div class="device-grid">
     <% devices.forEach(device => { %>
         <div class="device-square">
-            <a href="/device/<%= device.name %>"><%= device.name %></a>
+            <a href="/device/<%= device._id %>"><%= device.name %></a>
             <p>Value: <%= device.value %></p>
         </div>
     <% }); %>

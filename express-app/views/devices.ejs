@@ -11,7 +11,17 @@
     <%- include('navbar', { username}) %>   
 
     <%- include('device', {devices}) %>   
+    <!-- Include the add_device module -->
+    <%- include('add_device') %>
 
+    <script>
+        // JavaScript to toggle the visibility of the add device form
+        function toggleAddDeviceForm() {
+            var addDeviceForm = document.getElementById('add-device-form');
+            addDeviceForm.style.display = (addDeviceForm.style.display === 'none') ? 'block' : 'none';
+        }
+    </script>
+    <button onclick="toggleAddDeviceForm()">Add Device</button>
     
 
 </body>
