@@ -193,7 +193,9 @@ class VirtualWindowSensor:
         return self.ind > self.prob
     
     def mqtt(self):
-        publish.single(self.topic, str(self.val), hostname=mqtt_broker)
+        if self.val: pub = 'Closed'
+        else: pub = 'Open'
+        publish.single(self.topic,pub, hostname=mqtt_broker)
 
         pass
     

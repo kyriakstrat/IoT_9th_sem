@@ -1,14 +1,22 @@
- version: "3" 
+version: '3'
+services:
+  orion:
+    image: fiware/orion
+    container_name: orion-context-broker
+    ports:
+      - "1026:1026"
+    command: -dbhost mongo
+    depends_on:
+      - mongo
+    networks:
+      - fiware_network
 
- services:
-   orion:
-     image: fiware/orion
-     ports:
-       - "1026:1026"
-     depends_on:
-       - mongo
-     command: -dbhost mongo
- 
-   mongo:
-     image: mongo:6.0
-     command: --nojournal
+  mongo:
+    image: mongo
+    container_name: mongodb
+    networks:
+      - fiware_network
+
+networks:
+  fiware_network:
+    driver: bridge

@@ -106,6 +106,6 @@ def read_entity_attribute(entity_id, attribute_name):
 
 # Example Usage:
 # create_entity("urn:ngsi-ld:entityId:001", "SampleEntity", {"temperature": {"value": 25.5, "type": "Float"},'hum':{"value":13.0, "type":"Float"}})
-update_entity("urn:ngsi-ld:entityId:001", {"temperature": {"value": 28.0, "type": "Float"}})
-print(read_entity_attribute("urn:ngsi-ld:entityId:001","temperature"))
+# update_entity("urn:ngsi-ld:entityId:001", {"temperature": {"value": 28.0, "type": "Float"}})
+# print(read_entity_attribute("urn:ngsi-ld:entityId:001","temperature"))
 # delete_entity("urn:ngsi-ld:entityId:002")
