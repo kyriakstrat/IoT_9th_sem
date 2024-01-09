@@ -3,9 +3,34 @@
 
 <div class="device-grid">
     <% devices.forEach(device => { %>
-        <div class="device-square">
+        <div class="device-square" data-device-name="<%= device.url %>">
             <a href="/device/<%= device._id %>"><%= device.name %></a>
-            <p>Value: <%= device.value %></p>
+            <p id="value_<%= device.url %>">Value: Loading...</p>
         </div>
     <% }); %>
 </div>
+
+<script>
+    function fetchDeviceValue(deviceName) {
+        fetch(`/api/device/${deviceName}/value`)
+            .then(response => response.json())
+            .then(data => {
+                const valueElement = document.getElementById(`value_${deviceName}`);
+                if (valueElement) {
+                    valueElement.textContent = `Value: ${data.value}`;
+                }
+            })
+            .catch(error => console.error('Error fetching device value:', error));
+    }
+
+    function fetchAllDeviceValues() {
+        const deviceNames = Array.from(document.querySelectorAll('.device-square')).map(square => square.getAttribute('data-device-name'));
+        deviceNames.forEach(fetchDeviceValue);
+    }
+
+    // Fetch device values initially
+    fetchAllDeviceValues();
+
+    // Fetch device values every 10 seconds
+    setInterval(fetchAllDeviceValues, 100); // 10000 milliseconds = 10 seconds
+</script>

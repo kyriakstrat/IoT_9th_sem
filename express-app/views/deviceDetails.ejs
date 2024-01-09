@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="deviceDetails.css">
 </head>
 <body>
+    <%- include('navbar', { username}) %>   
+
     <div class="device-info">
         <h2>Device Details</h2>
         <p>Name: <%= device.name %></p>

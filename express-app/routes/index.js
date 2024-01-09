@@ -4,13 +4,14 @@ const router = express.Router();
 // const session = require('express-session');
 const Device = require('../models/devicemodel');
 const User = require('../models/userModel'); // Adjust the path as needed
-
+const Log = require('../models/logModel');
+let username ;
 // const devicesController = require('../controllers/devicesController');
 
 router.get('/', async (req, res) => {
 
     const userData = await User.findById(req.session.userId);
-    const username = userData.name;
+    username = userData.name;
     
     const devices = await Device.find({ _id: { $in: userData.devices }});
     // const devices = [
@@ -59,7 +60,7 @@ router.get('/device/:id', async (req, res) => {
       // Retrieve the device details by ID
       const device = await Device.findById(deviceId);
 
-      res.render('deviceDetails', { title: 'Device Details', device });
+      res.render('deviceDetails', { title: 'Device Details',username, device });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -100,4 +101,35 @@ router.get('/deleteDevice/:id', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  // Custom route to handle device value requests
+router.get('/api/device/:deviceName/value', async (req, res) => {
+  const { deviceName } = req.params;
+  try {
+    const device = await Device.findOne({ url: deviceName });
+    let device_value = device.value;
+    // console.log(device.value);
+    const response = await fetch(`http://localhost:1026/v2/entities/sensor_${deviceName}/attrs/value`);
+    const data = await response.json();
+    res.json(data);
+    // console.log(data.value);
+    if (data.value != device.value){
+      console.log('log created,updating value')
+      await Device.findOneAndUpdate({url:deviceName}, {value:data.value}, { new: true });
+
+      // Create a new log entry
+      const log = new Log({
+        deviceName,
+        value: data.value,
+        owner: req.session.userId, // Assuming req.session.userId contains the user ID
+      });
+
+      await log.save(); // Save the new log entry to the database
+      
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 module.exports = router;

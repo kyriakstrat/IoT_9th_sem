@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts'); // Import express-ejs-layouts
 const checkSessionMiddleware = require('./middleware/checkSession');
-
+const cors = require('cors');
 
 const port = 3000;
 
@@ -29,6 +29,8 @@ app.use(
     })
   );
 
+  app.use(cors());
+  
 // Use body-parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,11 +40,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const indexRoutes = require('./routes/index');
 const loginRoutes = require('./routes/login');
 const profileRoutes = require('./routes/profile');
+const logRoutes = require('./routes/logs');
 
 app.use('/login',loginRoutes);
 app.use(checkSessionMiddleware);
 app.use('/', indexRoutes);
 app.use('/profile',profileRoutes);
+app.use('/logs',logRoutes);
 
 // Start the server
 app.listen(port, () => {
