@@ -20,8 +20,15 @@
             <input type="text" id="name" name="name" value="<%= device.name %>" required>
             <label for="url">URL:</label>
             <input type="text" id="url" name="url" value="<%= device.url %>" required>
+            
+            <!-- Replace the input for type with a dropdown menu -->
             <label for="type">Type:</label>
-            <input type="text" id="type" name="type" value="<%= device.type %>" required>
+            <select id="type" name="type" required>
+                <% types.forEach(type => { %>
+                    <option value="<%= type.toLowerCase() %>" <%= (type.toLowerCase() === device.type.toLowerCase()) ? 'selected' : '' %>><%= type %></option>
+                <% }); %>
+            </select>
+            
             <button type="submit" class="edit-btn">Save Changes</button>
         </form>
 

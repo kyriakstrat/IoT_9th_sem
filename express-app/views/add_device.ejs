@@ -9,10 +9,12 @@
         <br>
         <label for="deviceType">Device Type:</label>
         <select id="deviceType" name="deviceType" required>
-            <option value="sensor">Sensor</option>
-            <option value="actuator">Actuator</option>
+            <% types.forEach(type => { %>
+                <option value="<%= type.toLowerCase() %>"><%= type %></option>
+            <% }); %>
         </select>
         <br>
         <button type="submit">Add</button>
     </form>
 </div>
+

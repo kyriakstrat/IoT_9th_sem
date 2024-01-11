@@ -5,9 +5,13 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts'); // Import express-ejs-layouts
 const checkSessionMiddleware = require('./middleware/checkSession');
+const fetchDataMiddleware = require('./middleware/fetchDataMiddleware');
+const cron = require('node-cron');
+
 const cors = require('cors');
 
 const port = 3000;
+
 
 // Set up view engine (in this case, using EJS)
 app.set('view engine', 'ejs');
@@ -35,12 +39,19 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+// Schedule fetchDataMiddleware to run every minute
+cron.schedule('*/1 * * * * *', async () => {
+  console.log('Running fetchDataMiddleware...');
+  await fetchDataMiddleware();
+});
 // Use routes
 
 const indexRoutes = require('./routes/index');
 const loginRoutes = require('./routes/login');
 const profileRoutes = require('./routes/profile');
 const logRoutes = require('./routes/logs');
+
 
 app.use('/login',loginRoutes);
 app.use(checkSessionMiddleware);

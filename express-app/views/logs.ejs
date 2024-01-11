@@ -4,16 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="logs.css">
+
   <title>Logs</title>
 </head>
 <body>
+<%- include('navbar', { username}) %>   
+
   <header>
     <h1>Logs</h1>
   </header>
   <main>
     <% if (logs.length > 0) { %>
       <ul class="log-list">
-        <% logs.forEach(log => { %>
+        <% logs.reverse().forEach(log => { %>
           <li>
             <strong>Device Name:</strong> <%= log.deviceName %><br>
             <strong>Value:</strong> <%= log.value %><br>
@@ -21,6 +24,9 @@
           </li>
         <% }); %>
       </ul>
+      <form action="/logs/delete" method="post" id="deleteLogsForm">
+        <button type="submit">Delete All Logs</button>
+      </form>
     <% } else { %>
       <p>No logs found.</p>
     <% } %>

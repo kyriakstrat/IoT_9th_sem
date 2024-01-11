@@ -17,7 +17,7 @@ def read_string(reader,pos=0x01):
 
 auth_users = []
 mqtt_broker = "150.140.186.118"
-mqtt_topic = "kyriakstrat/ish/card_reader"
+mqtt_topic = "kyriakstrat/cardReader"
 
 # Convert the string to a 16-byte array
 # byte_array = my_string.encode('utf-8')[:16].ljust(16, b'\0')
@@ -30,21 +30,22 @@ while(1):
 
         # reader.load_authentication_data(0x01, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF])
         reader.authentication(0x00, 0x61, 0x01)
+        uuid = str(reader.get_uid())
+        # uuid = int_list_to_string_list(reader.get_uid())
 
-        uuid = int_list_to_string_list(reader.get_uid())
-        if uuid not in auth_users:
-            auth_users.append(uuid)
-            write_string(reader,0x01,'Kyriak0s')
-            write_string(reader,0x02,str(0))
-        else:
-            write_string(reader,0x02,str(int(read_string(reader,0x02))+1))
-            publish.single(mqtt_topic, uuid, hostname=mqtt_broker)
+        publish.single(mqtt_topic, uuid, hostname=mqtt_broker)
 
         # # print(int_list_to_string_list(reader.get_uid()))
-        print(read_string(reader,0x01))
+        print(uuid)
         # print(read_string(reader,0x02))
         time.sleep(2)
     except:
+        publish.single(mqtt_topic, 'None', hostname=mqtt_broker)
+
+        # # print(int_list_to_string_list(reader.get_uid()))
+        print('None')
+        # print(read_string(reader,0x02))
+        time.sleep(2)
         pass
 
 # import paho.mqtt.publish as publish

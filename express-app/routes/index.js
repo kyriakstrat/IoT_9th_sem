@@ -7,25 +7,14 @@ const User = require('../models/userModel'); // Adjust the path as needed
 const Log = require('../models/logModel');
 let username ;
 // const devicesController = require('../controllers/devicesController');
-
+let types = ['Sensor','Lamp','Card Reader','Camera','Lock']
 router.get('/', async (req, res) => {
 
     const userData = await User.findById(req.session.userId);
     username = userData.name;
     
     const devices = await Device.find({ _id: { $in: userData.devices }});
-    // const devices = [
-    //     { name: 'device1', value: 20 },
-    //     { name: 'device2', value: 15 },
-    //     { name: 'device3', value: 25 },
-    //     { name: 'device1', value: 20 },
-    //     { name: 'device2', value: 15 },
-    //     { name: 'device3', value: 25 },
-    //     { name: 'device1', value: 20 },
-    //     { name: 'device2', value: 15 },
-    //     { name: 'device3', value: 25 },
-    // ];
-    res.render('devices', { title: 'Home',username,devices});
+    res.render('devices', { title: 'Home',username,devices,types});
 });
 
 router.get('/logout', (req, res) => {
@@ -60,7 +49,7 @@ router.get('/device/:id', async (req, res) => {
       // Retrieve the device details by ID
       const device = await Device.findById(deviceId);
 
-      res.render('deviceDetails', { title: 'Device Details',username, device });
+      res.render('deviceDetails', { title: 'Device Details',username, device ,types});
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -102,33 +91,28 @@ router.get('/deleteDevice/:id', async (req, res) => {
     }
   });
 
-  // Custom route to handle device value requests
+// Custom route to handle device value requests
 router.get('/api/device/:deviceName/value', async (req, res) => {
-  const { deviceName } = req.params;
   try {
+    const deviceName = req.params.deviceName;
+
+    // Fetch the device from the database using the provided device name
     const device = await Device.findOne({ url: deviceName });
-    let device_value = device.value;
-    // console.log(device.value);
-    const response = await fetch(`http://localhost:1026/v2/entities/sensor_${deviceName}/attrs/value`);
-    const data = await response.json();
-    res.json(data);
-    // console.log(data.value);
-    if (data.value != device.value){
-      console.log('log created,updating value')
-      await Device.findOneAndUpdate({url:deviceName}, {value:data.value}, { new: true });
 
-      // Create a new log entry
-      const log = new Log({
-        deviceName,
-        value: data.value,
-        owner: req.session.userId, // Assuming req.session.userId contains the user ID
-      });
-
-      await log.save(); // Save the new log entry to the database
-      
+    if (!device) {
+      // If the device is not found, return an appropriate response
+      return res.status(404).json({ error: 'Device not found' });
     }
+
+    // Return the device data including type as JSON response
+    res.json({
+      deviceName: device.url,
+      value: device.value,
+      type: device.type,
+      // Add other device properties as needed
+    });
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error fetching device data:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

@@ -5,7 +5,20 @@
     <% devices.forEach(device => { %>
         <div class="device-square" data-device-name="<%= device.url %>">
             <a href="/device/<%= device._id %>"><%= device.name %></a>
-            <p id="value_<%= device.url %>">Value: Loading...</p>
+
+            <% if (device.type === 'sensor' || device.type === 'lamp' || device.type === 'lock') { %>
+                <p id="value_<%= device.url %>">Value: Loading...</p>
+                <% if (device.type === 'lamp' || device.type === 'lock') { %>
+                    <a href="/turnOn/<%= device._id %>">Turn On</a>
+                    <a href="/turnOff/<%= device._id %>">Turn Off</a>
+                <% } %>
+            <% } else if (device.type === 'card reader') { %>
+                <p id="value_<%= device.url %>">Number of Keys: Loading...</p>
+            <% } else if (device.type === 'camera') { %>
+                <!-- No additional information for Camera type -->
+            <% } %>
+
+            <p>Type: <%= device.type %></p>
         </div>
     <% }); %>
 </div>
@@ -17,7 +30,11 @@
             .then(data => {
                 const valueElement = document.getElementById(`value_${deviceName}`);
                 if (valueElement) {
-                    valueElement.textContent = `Value: ${data.value}`;
+                    if (data.type === 'card reader') {
+                        valueElement.textContent = `Number of Keys: ${data.value}`;
+                    } else if (data.type === 'sensor' || data.type === 'lamp' || data.type === 'lock') {
+                        valueElement.textContent = `Value: ${data.value}`;
+                    }
                 }
             })
             .catch(error => console.error('Error fetching device value:', error));
@@ -32,5 +49,5 @@
     fetchAllDeviceValues();
 
     // Fetch device values every 10 seconds
-    setInterval(fetchAllDeviceValues, 100); // 10000 milliseconds = 10 seconds
+    setInterval(fetchAllDeviceValues, 200); // 10000 milliseconds = 10 seconds
 </script>
