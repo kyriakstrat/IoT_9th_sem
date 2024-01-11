@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Schedule fetchDataMiddleware to run every minute
 cron.schedule('*/1 * * * * *', async () => {
-  console.log('Running fetchDataMiddleware...');
+  // console.log('Running fetchDataMiddleware...');
   await fetchDataMiddleware();
 });
 // Use routes

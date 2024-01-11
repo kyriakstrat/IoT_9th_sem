@@ -2,6 +2,10 @@
 // const fetch = require('node-fetch');
 const Device = require('../models/devicemodel');
 const Log = require('../models/logModel');
+const User = require('../models/userModel');
+const Card = require('../models/cardModel');
+
+
 
 const fetchDataMiddleware = async (req, res, next) => {
   try {
@@ -17,22 +21,71 @@ const fetchDataMiddleware = async (req, res, next) => {
       const data = await response.json();
     //   console.log("%s,%s,%s",deviceURL,data.value,device.value);
       // Update the device value in the database if it has changed
-      if (data.value !== device.value) {
-        if (['Sensor','Lamp','Lock'].includes(device.type)){
-            await Device.findOneAndUpdate({ url: deviceURL }, { value: data.value }, { new: true });
-        }else if(device.type = 'Card Reader'){
-            console.log('here');
-        }
-        
+      let dataValue = data.value;
 
-        // Create a new log entry
-        const log = new Log({
-          deviceName,
-          value: data.value,
-          owner: device.owner,
-        });
+      if (dataValue !== device.value) {
+          await Device.findOneAndUpdate({ url: deviceURL }, { value: dataValue }, { new: true });
 
-        await log.save(); // Save the new log entry to the database
+
+          if (device.type == 'card reader'){
+            if(dataValue != 'None'){
+              // console.log('here2')
+              const cardReaderOwner = await User.findById(device.owner);
+              console.log("%s,%s,%s",cardReaderOwner.key_reg,cardReaderOwner.name,dataValue);
+
+              if (cardReaderOwner && cardReaderOwner.key_reg) {
+                //create a new key. 
+                const key = await Card.findOne({deviceCode:dataValue})
+                
+                //deviceName = 'Test', deviceCode = dataValue, owner: device.owner
+                // Create a new key entry
+                if(!key){
+                  const newKey = new Card({
+                    deviceName: 'Auth user', // Set the appropriate deviceName
+                    deviceCode: dataValue,
+                    owner: device.owner,
+                });
+
+                await newKey.save();
+                console.log('key created');
+              }else{
+                console.log("Key already exists");
+                console.log(key);
+              }
+              }else{
+              // check if there is a key associated with the user in the db. 
+              //if there is make a log with value = '{cardName} checked in'
+              //else make a log with value = 'unauth user tried to check in'
+                // Create a new log entry
+                const key = await Card.findOne({deviceCode:dataValue})
+                let val;
+                if (key){
+                  val = key.deviceName;
+                }else{
+                  val = 'Unauth person';
+                }
+                console.log(val)
+                const log = new Log({
+                  deviceName,
+                  value: val,
+                  owner: device.owner,
+                });
+
+                await log.save(); // Save the new log entry to the database
+              }
+            }
+          }else{
+            // Create a new log entry for all the other types of sensors
+            const log = new Log({
+              deviceName,
+              value: dataValue,
+              owner: device.owner,
+            });
+
+            await log.save(); // Save the new log entry to the database
+
+          }
+
       }
     }
 

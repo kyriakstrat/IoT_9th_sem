@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  key_reg:{
+    type: Boolean,
+    required : false,
+  },
   devices: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Device',

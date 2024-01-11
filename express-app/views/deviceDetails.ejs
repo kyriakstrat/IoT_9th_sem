@@ -30,10 +30,41 @@
             </select>
             
             <button type="submit" class="edit-btn">Save Changes</button>
+
+
         </form>
 
         <button onclick="toggleEditForm()" class="edit-btn">Edit</button>
         <a href="/deleteDevice/<%= device._id %>" class="delete-btn" onclick="return confirm('Are you sure you want to delete this device?')">Delete</a>
+
+        <% if (device.type.toLowerCase() === 'card reader') { %>
+            <div class="card-section">
+                <h3>Cards Associated with <%= username %></h3>
+                <!-- Display cards associated with the session user -->
+                <% cards.forEach(card => { %>
+                    <div>
+                    <span>Card Device: <%= card.deviceName %></span>
+                    <a href="/deleteKey/<%= card._id %>" class="delete-key" onclick="return confirm('Are you sure you want to delete this key?')">Delete</a></div>
+                <% }); %>
+                <!-- Button to add a new key -->
+                <button onclick="addNewKey()">Add New Key</button>
+                <p id="countdown-text" style="display: none;">You have <span id="countdown-seconds">30</span> seconds to scan a new card.</p>
+
+            </div>
+            <form action="/renameKey" method="post" class="rename-key-form">
+                <label for="selectCard">Select Card:</label>
+                <select id="selectCard" name="selectCard" required>
+                    <% cards.forEach(card => { %>
+                        <option value="<%= card._id %>"><%= card.deviceName %></option>
+                    <% }); %>
+                </select>
+    
+                <label for="newKeyName">New Key Name:</label>
+                <input type="text" id="newKeyName" name="newKeyName" required>
+    
+                <button type="submit" class="rename-key-btn">Rename Key</button>
+            </form>
+        <% } %>
     </div>
 
     <script>
@@ -41,6 +72,70 @@
             const editForm = document.querySelector('.edit-form');
             editForm.style.display = (editForm.style.display === 'none') ? 'block' : 'none';
         }
-    </script>
+
+
+        function addNewKey() {
+        // Trigger the countdown and session management
+        startCountdown();
+        setSessionCard(true);
+        
+        // Placeholder logic to handle adding a new key
+        // You can add AJAX requests or redirect to a new page for adding a new key
+        console.log('Adding a new key...');
+
+        // Set a timeout to reset the session and hide the countdown after 30 seconds
+        setTimeout(() => {
+            setSessionCard(false);
+            hideCountdown();
+        }, 30000);
+    }
+
+    function startCountdown() {
+        // Display the countdown text
+        const countdownText = document.getElementById('countdown-text');
+        const countdownSeconds = document.getElementById('countdown-seconds');
+        countdownText.style.display = 'block';
+
+        // Update the countdown every second
+        let seconds = 30;
+        const countdownInterval = setInterval(() => {
+            countdownSeconds.textContent = seconds;
+            seconds--;
+
+            // Stop the countdown when it reaches zero
+            if (seconds < 0) {
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+    }
+
+    function hideCountdown() {
+        // Hide the countdown text
+        const countdownText = document.getElementById('countdown-text');
+        countdownText.style.display = 'none';
+    }
+
+    function setSessionCard(value) {
+        // Update the session variable 'card'
+        // This is a placeholder for your actual session management logic
+        // You may need to make an AJAX request to the server to update the session
+        // or use a different mechanism based on your server-side setup
+        console.log(`Setting session card to: ${value}`);
+         // Make a request to update the session card on the server
+        fetch('/updateSessionCard', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newCardValue: value }), // Adjust the value as needed
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message); // Log the server response
+        })
+        .catch(error => console.error('Error updating session card:', error));
+
+    }
+</script>
 </body>
 </html>

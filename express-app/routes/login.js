@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
   
       // Create a session for the user
       req.session.userId = user._id;
+      req.session.card = false;
   
       // Redirect the user to the home page
       res.redirect('/');
