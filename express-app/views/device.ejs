@@ -13,7 +13,7 @@
                     <a href="/turnOff/<%= device._id %>">Turn Off</a>
                 <% } %>
             <% } else if (device.type === 'card reader') { %>
-                <p id="value_<%= device.url %>">Number of Keys: Loading...</p>
+                <p id="value_<%= device.url %>">Value: Loading...</p>
             <% } else if (device.type === 'camera') { %>
                 <!-- No additional information for Camera type -->
             <% } %>
@@ -31,7 +31,7 @@
                 const valueElement = document.getElementById(`value_${deviceName}`);
                 if (valueElement) {
                     if (data.type === 'card reader') {
-                        valueElement.textContent = `Number of Keys: ${data.value}`;
+                        valueElement.textContent = `Value: ${data.value}`;
                     } else if (data.type === 'sensor' || data.type === 'lamp' || data.type === 'lock') {
                         valueElement.textContent = `Value: ${data.value}`;
                     }

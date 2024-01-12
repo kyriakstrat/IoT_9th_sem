@@ -116,14 +116,29 @@ router.get('/api/device/:deviceName/value', async (req, res) => {
       // If the device is not found, return an appropriate response
       return res.status(404).json({ error: 'Device not found' });
     }
+    if(device.type == 'card reader'){
+      const card = await Card.findOne({deviceCode:device.value});
+      let cardOwner;
+      if(card)cardOwner = card.deviceName;
+      else if(device.value == 'None') cardOwner = 'None';
+      else cardOwner = 'Unauth user';
+      // Return the device data including type as JSON response
+      res.json({
+        deviceName: device.url,
+        value: cardOwner,
+        type: device.type,
+        // Add other device properties as needed
+      });
+    }else{
+      // Return the device data including type as JSON response
+      res.json({
+        deviceName: device.url,
+        value: device.value,
+        type: device.type,
+        // Add other device properties as needed
+      });
 
-    // Return the device data including type as JSON response
-    res.json({
-      deviceName: device.url,
-      value: device.value,
-      type: device.type,
-      // Add other device properties as needed
-    });
+    }
   } catch (error) {
     console.error('Error fetching device data:', error);
     res.status(500).json({ error: 'Internal Server Error' });

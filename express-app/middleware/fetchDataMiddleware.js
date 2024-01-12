@@ -31,8 +31,6 @@ const fetchDataMiddleware = async (req, res, next) => {
             if(dataValue != 'None'){
               // console.log('here2')
               const cardReaderOwner = await User.findById(device.owner);
-              console.log("%s,%s,%s",cardReaderOwner.key_reg,cardReaderOwner.name,dataValue);
-
               if (cardReaderOwner && cardReaderOwner.key_reg) {
                 //create a new key. 
                 const key = await Card.findOne({deviceCode:dataValue})
