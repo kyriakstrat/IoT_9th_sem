@@ -69,4 +69,27 @@ router.post('/register', async (req, res) => {
     }
   });
 
+  
+router.post('/app_inv_pass', async (req, res) => {
+  const { email, pass } = req.body;
+
+  try {
+    // Find the user by email and password
+    const user = await User.findOne({ email: email, password: pass });
+    console.log(req.body)
+    // Check if the user exists
+    console.log("%s,%s",email,pass);
+    if (!user) {
+      res.status(500).send('Bad credentials');
+      return;
+    }else{
+      res.status(200).send('Good credentials');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+  //comment
+});
+
 module.exports = router;
