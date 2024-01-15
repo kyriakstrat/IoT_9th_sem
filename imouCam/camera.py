@@ -3,6 +3,9 @@ import asyncio
 from imouapi.api import ImouAPIClient
 from imouapi.device import ImouDiscoverService, ImouDevice
 from imouapi.device_entity import ImouCamera
+from PIL import Image
+from io import BytesIO
+import IPython.display as display
 
 async def main():
     # Replace with your Imou developer account credentials
@@ -26,9 +29,6 @@ async def main():
                 # Assuming you want to interact with the first discovered device
                 # device_id = discovered_devices[0]['device_id']
                 print(discovered_devices)
-                device_ids = discovered_devices.keys()
-                device_ids = list(device_ids)
-                print(device_ids)
 
                 for device_id, device in discovered_devices.items():
                     # Instantiate the Imou Devic
@@ -38,10 +38,29 @@ async def main():
                     await device.async_refresh_status()
                     print(device.is_online())
                     print(device.is_enabled())
-                    device_name = device.get_name
-                    camera = ImouCamera(api_client, device_id,device_name, "camera", "HD")
+                    # device_name = device.get_name()
+                    sensors = device.get_all_sensors()
+                    # data = await device.async_get_data()
+                    # print(data)
+                    sensor_names = [s.get_name() for s in sensors]
+                    print(sensor_names)
+                    for sensor in sensors:
+                        if sensor.get_name() == 'camera':
+                            # THIS IS THE CAMERA MODULE
+                            # await sensor.async_service_ptz_location(0,0,0.5)
+                            photo = await sensor.async_get_image()
+                            image = Image.open(BytesIO(photo))
+                            image.save('img4.jpeg')
+                        elif sensor.get_name() == 'motionAlarm':
+                            # THIS IS THE MOTION ALARM MODULE
+                            await sensor.async_update()
+                            print(sensor.is_on())
+                            print(f'motion Alarm is {sensor.is_on()}')
 
-                    await camera.async_open_stream()
+                            pass
+                        elif sensor.get_name() == 'motionDetect':
+                            await sensor.async_update()
+                            print(f'motion Detect module is {sensor.is_on()}')
 
                     # image_data = await camera.async_get_image()
                     # await camera.async_get_stream_url()
