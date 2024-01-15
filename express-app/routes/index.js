@@ -129,7 +129,7 @@ router.get('/api/device/:deviceName/value', async (req, res) => {
         type: device.type,
         // Add other device properties as needed
       });
-    }else{
+    }else if(device.type!='camera'){
       // Return the device data including type as JSON response
       res.json({
         deviceName: device.url,
@@ -201,5 +201,6 @@ router.post('/renameKey', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+ 
 
 module.exports = router;

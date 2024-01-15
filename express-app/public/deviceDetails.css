@@ -53,3 +53,10 @@ input {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+.iframe-container {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 56.25%; /* Adjust this value to set the aspect ratio (height/width) of the iframe */
+    height: 0;
+}

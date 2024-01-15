@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/userModel'); // Adjust the path as needed
+const Device = require('../models/devicemodel'); // Adjust the path as needed
+
 
 // const devicesController = require('../controllers/devicesController');
 
@@ -71,25 +73,42 @@ router.post('/register', async (req, res) => {
 
   
 router.post('/app_inv_pass', async (req, res) => {
-  const { email, pass } = req.body;
-
+  console.log(req.body);
   try {
-    // Find the user by email and password
-    const user = await User.findOne({ email: email, password: pass });
-    console.log(req.body)
-    // Check if the user exists
-    console.log("%s,%s",email,pass);
-    if (!user) {
-      res.status(500).send('Bad credentials');
-      return;
-    }else{
-      res.status(200).send('Good credentials');
+    const { url, type,name } = req.body;
+
+    // Check if a device with the same URL already exists
+    const existingDevice = await Device.findOne({ url });
+    const user = await User.findOne({ email:name });
+
+    console.log(user._id);
+
+    if (existingDevice || !user) {
+      // Device with the same URL already exists
+      res.status(409).json({ message: 'Device already exists with the provided URL' });
+    } else {
+      // Create a new device
+      const newDevice = new Device({
+        url:url,
+        type:type,
+        name: 'None',
+        owner:user._id,
+      });
+
+      // Save the new device to the database
+      await newDevice.save();
+      console.log('new device created')
+      user.devices.push(newDevice._id);
+      await user.save();
+      
+
+      res.status(201).json({ message: 'Device created successfully', device: newDevice });
     }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-  //comment
 });
+
 
 module.exports = router;
