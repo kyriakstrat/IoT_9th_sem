@@ -7,6 +7,7 @@ from PIL import Image
 from io import BytesIO
 import IPython.display as display
 
+
 async def main():
     # Replace with your Imou developer account credentials
     app_id = "lc7ed544766d1c476c"
@@ -36,40 +37,33 @@ async def main():
                     await device.async_initialize()
                     await device.async_wakeup()
                     await device.async_refresh_status()
-                    print(device.is_online())
-                    print(device.is_enabled())
                     # device_name = device.get_name()
                     sensors = device.get_all_sensors()
                     # data = await device.async_get_data()
                     # print(data)
                     sensor_names = [s.get_name() for s in sensors]
                     print(sensor_names)
-                    print([t.get_description() for t in sensors])
+
                     for sensor in sensors:
                         if sensor.get_name() == 'camera':
                             # THIS IS THE CAMERA MODULE
                             # await sensor.async_service_ptz_location(0,0,0.5)
-                            photo = await sensor.async_get_image()
-                            image = Image.open(BytesIO(photo))
-                            image.save('img4.jpeg')
-                        elif sensor.get_name() == 'motionAlarm':
+                            camera = sensor
+                        elif sensor.get_name() == 'motionDetect' and sensor.get_description()=='Motion detection':
                             # THIS IS THE MOTION ALARM MODULE
                             await sensor.async_update()
-                            print(sensor.is_on())
+                            if not sensor.is_on():
+                                await sensor.async_turn_on()
                             print(f'motion Alarm is {sensor.is_on()}')
+
+                            pass
+                        elif sensor.get_name() == 'motionAlarm':
+                            motion_detection = sensor
                         elif sensor.get_name() == 'whiteLight':
-                            await sensor.async_update()
-                            await sensor.async_turn_on()
-                            print(sensor.is_on())
-                            pass
+                            light = sensor
+            await asyncio.create_task(run_camera_detection(camera, motion_detection,light))
 
-                            pass
-                        elif sensor.get_name() == 'motionDetect':
-                            await sensor.async_update()
-                            print(f'motion Detect module is {sensor.is_on()}')
 
-                    # image_data = await camera.async_get_image()
-                    # await camera.async_get_stream_url()
                     
         except Exception as e:
             print('error')
@@ -77,6 +71,22 @@ async def main():
 
     return
 
+async def run_camera_detection(camera,sensor,light):
+    while True:
+        # await asyncio.sleep(0.1)  # Sleep for 0.5 seconds
+        await cameraDetection(camera, sensor,light)
+
+async def cameraDetection(camera,sensor,light):
+    if not camera or not sensor:raise ValueError
+    await sensor.async_update()
+    if sensor.is_on():
+        print('movement detected')
+        photo = await camera.async_get_image()
+        await  light.async_turn_on()
+        image = Image.open(BytesIO(photo))
+        image.save('detection2.jpeg')
+    else:
+        print('not')
 
 
 if __name__ == "__main__":
